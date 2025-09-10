@@ -1,5 +1,7 @@
 import type { FC, PropsWithChildren } from "react";
 import PageHeader from "../../components/page/PageHeader";
+import useLayout from "../../hooks/useLayout";
+import clsx from "clsx";
 
 type DashboardPageWrapperProps = PropsWithChildren & {
   title: string;
@@ -12,10 +14,18 @@ const DashboardPageWrapper: FC<DashboardPageWrapperProps> = ({
   showHeader = false,
   ...restProps
 }) => {
+  const { darkMode } = useLayout();
+  const isDark = darkMode === "dark";
+
   return (
     <div className="flex flex-col h-[100vh]">
       {showHeader && <PageHeader {...restProps} />}
-      <div className="flex-1 overflow-y-auto px-8 py-8 bg-[#f6f6f6]">
+      <div
+        className={clsx(
+          "flex-1 overflow-y-auto py-8",
+          isDark ? "bg-[#212121]" : "bg-[#fff]"
+        )}
+      >
         {children}
       </div>
     </div>

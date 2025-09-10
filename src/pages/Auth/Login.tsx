@@ -1,4 +1,4 @@
-import { Card, Checkbox, Form, Input, Typography } from "antd";
+import { Card, Checkbox, Form, Input, Segmented, Typography } from "antd";
 import { Link, useNavigate } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 
@@ -17,12 +17,15 @@ const Login = () => {
       <img
         src="https://static.vecteezy.com/system/resources/previews/022/227/364/non_2x/openai-chatgpt-logo-icon-free-png.png"
         className="w-[74px] h-[74px]"
-        alt=""
+        alt="buddhit_log"
       />
       <Typography.Title level={2}>Sign in to your account</Typography.Title>
       <Card className="w-[450px] shadow-xl">
         <div className="flex flex-col items-center justify-center">
           <Form form={form} layout="vertical" className="w-full">
+            <Form.Item name="accountType">
+              <Segmented size="large" block options={["Student", "Teacher"]} />
+            </Form.Item>
             <Form.Item name="email" label="Email Address">
               <Input size="large" placeholder="Enter your email" />
             </Form.Item>

@@ -1,9 +1,7 @@
+import ChatLayout from "../../components/chat/ChatLayout";
+
 const Home = () => {
-  return (
-    <div>
-      <h3>This is dashboard Page</h3>
-    </div>
-  );
+  return <ChatLayout />;
 };
 
 export default Home;

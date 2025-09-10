@@ -1,11 +1,20 @@
-import { Card, Col, Divider, Form, Input, Row, Typography } from "antd";
+import {
+  Flex,
+  message,
+  Upload,
+  Card,
+  Col,
+  Divider,
+  Form,
+  Input,
+  Row,
+  Typography,
+} from "antd";
 import { UserCircleIcon } from "@phosphor-icons/react";
 import DashboardPageWrapper from "../../components/page/DashboardPageWrapper";
-
 import { useState, type FC } from "react";
-import { LoadingOutlined, PlusOutlined } from "@ant-design/icons";
-import { Flex, message, Upload } from "antd";
 import type { GetProp, UploadProps } from "antd";
+import { LoadingOutlined, PlusOutlined } from "@ant-design/icons";
 
 type FileType = Parameters<GetProp<UploadProps, "beforeUpload">>[0];
 
