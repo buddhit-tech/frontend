@@ -1,6 +1,5 @@
 import type { FC } from "react";
-import { Button, Tooltip } from "antd";
-import { ArrowUp, PaperPlaneRight } from "@phosphor-icons/react";
+import { ArrowUp } from "@phosphor-icons/react";
 import clsx from "clsx";
 import useLayout from "../../hooks/useLayout";
 
@@ -14,33 +13,27 @@ const SendButton: FC<SendButtonProps> = ({ hasMessage, onSend }) => {
   const isDark = darkMode === "dark";
 
   return (
-    <Tooltip title="Send message" placement="top">
-      <Button
-        type="primary"
-        size="small"
-        icon={
-          hasMessage ? (
-            <ArrowUp size={16} weight="fill" />
-          ) : (
-            <PaperPlaneRight size={16} weight="fill" />
-          )
-        }
-        onClick={onSend}
-        disabled={!hasMessage}
-        className={clsx(
-          "!h-8 !w-8 !rounded-lg !border-0 transition-all duration-200",
-          "hover:!scale-105 disabled:!scale-100",
-          hasMessage
-            ? "!bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-400 hover:to-blue-500 !shadow-md hover:!shadow-lg"
-            : clsx(
-                "!shadow-none",
-                isDark
-                  ? "!bg-gray-700/50 !text-gray-500"
-                  : "!bg-gray-200/50 !text-gray-400"
-              )
-        )}
-      />
-    </Tooltip>
+    <button
+      onClick={onSend}
+      disabled={!hasMessage}
+      className={clsx(
+        "flex items-center justify-center w-8 h-8 rounded-lg transition-all duration-200",
+        "hover:scale-105 disabled:scale-100 disabled:cursor-not-allowed",
+        hasMessage
+          ? clsx(
+              "bg-gray-900 text-white hover:bg-gray-800 shadow-sm",
+              isDark && "bg-gray-100 text-gray-900 hover:bg-gray-200"
+            )
+          : clsx(
+              "cursor-not-allowed",
+              isDark
+                ? "bg-gray-700/50 text-gray-500"
+                : "bg-gray-200/50 text-gray-400"
+            )
+      )}
+    >
+      <ArrowUp size={16} weight="bold" />
+    </button>
   );
 };
 

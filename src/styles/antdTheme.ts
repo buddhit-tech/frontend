@@ -1,0 +1,358 @@
+import type { ThemeConfig } from "antd";
+import { themeConfig as customTheme } from "./theme";
+
+export const createAntdTheme = (isDark: boolean): ThemeConfig => {
+  const colors = isDark ? customTheme.colors.dark : customTheme.colors.light;
+
+  return {
+    token: {
+      // Color Palette
+      colorPrimary: isDark ? "#177ddc" : "#1890ff",
+      colorSuccess: "#52c41a",
+      colorWarning: "#faad14",
+      colorError: colors.text.danger,
+      colorInfo: isDark ? "#177ddc" : "#1890ff",
+
+      // Background Colors
+      colorBgContainer: colors.background.primary,
+      colorBgElevated: colors.background.secondary,
+      colorBgLayout: colors.background.tertiary,
+      colorBgMask: "rgba(0, 0, 0, 0.45)",
+      colorBgSpotlight: colors.background.overlay,
+
+      // Text Colors
+      colorText: colors.text.primary,
+      colorTextSecondary: colors.text.secondary,
+      colorTextTertiary: colors.text.tertiary,
+      colorTextQuaternary: colors.text.tertiary,
+      colorTextDisabled: colors.text.tertiary,
+
+      // Border Colors
+      colorBorder: colors.border.primary,
+      colorBorderSecondary: colors.border.secondary,
+
+      // Fill Colors
+      colorFill: colors.hover.primary,
+      colorFillSecondary: colors.hover.secondary,
+      colorFillTertiary: colors.hover.primary,
+      colorFillQuaternary: colors.hover.secondary,
+
+      // Interactive Colors
+      colorLink: isDark ? "#177ddc" : "#1890ff",
+      colorLinkHover: isDark ? "#1e88e5" : "#40a9ff",
+      colorLinkActive: isDark ? "#1565c0" : "#096dd9",
+
+      // Layout
+      borderRadius: 8,
+      borderRadiusLG: 12,
+      borderRadiusSM: 6,
+      borderRadiusXS: 4,
+
+      // Spacing
+      padding: 16,
+      paddingLG: 24,
+      paddingSM: 12,
+      paddingXS: 8,
+      paddingXXS: 4,
+
+      margin: 16,
+      marginLG: 24,
+      marginSM: 12,
+      marginXS: 8,
+      marginXXS: 4,
+
+      // Font
+      fontSize: 14,
+      fontSizeLG: 16,
+      fontSizeSM: 12,
+
+      lineHeight: 1.5714285714285714,
+      lineHeightLG: 1.5,
+      lineHeightSM: 1.6666666666666667,
+
+      // Font Family
+      fontFamily:
+        "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'",
+
+      // Shadow
+      boxShadow: customTheme.shadows.md,
+      boxShadowSecondary: customTheme.shadows.sm,
+      boxShadowTertiary: customTheme.shadows.lg,
+
+      // Motion
+      motionDurationFast: "0.1s",
+      motionDurationMid: "0.2s",
+      motionDurationSlow: "0.3s",
+
+      // Z-index
+      zIndexBase: 0,
+      zIndexPopupBase: 1000,
+    },
+    components: {
+      // Button Component
+      Button: {
+        colorPrimary: isDark ? "#177ddc" : "#1890ff",
+        colorPrimaryHover: isDark ? "#1e88e5" : "#40a9ff",
+        colorPrimaryActive: isDark ? "#1565c0" : "#096dd9",
+        colorText: colors.text.primary,
+        colorTextSecondary: colors.text.secondary,
+        colorTextTertiary: colors.text.tertiary,
+        colorTextQuaternary: colors.text.tertiary,
+        colorTextDisabled: colors.text.tertiary,
+        colorBgContainer: colors.background.primary,
+        colorBgElevated: colors.background.secondary,
+        colorBorder: colors.border.primary,
+        colorBorderSecondary: colors.border.secondary,
+        borderRadius: 8,
+        borderRadiusLG: 12,
+        borderRadiusSM: 6,
+        controlHeight: 32,
+        controlHeightLG: 40,
+        controlHeightSM: 24,
+        paddingInlineLG: 24,
+        paddingInlineSM: 12,
+        fontWeight: 500,
+        boxShadow: "none",
+        boxShadowSecondary: "none",
+      },
+
+      // Input Component
+      Input: {
+        colorBgContainer: colors.background.primary,
+        colorText: colors.text.primary,
+        colorTextPlaceholder: colors.text.tertiary,
+        colorTextDisabled: colors.text.tertiary,
+        colorBorder: colors.border.primary,
+        colorPrimaryHover: isDark ? "#177ddc" : "#1890ff",
+        borderRadius: 8,
+        controlHeight: 32,
+        controlHeightLG: 40,
+        controlHeightSM: 24,
+        boxShadow: "none",
+        boxShadowSecondary: "none",
+      },
+
+      // Select Component
+      Select: {
+        colorBgContainer: colors.background.primary,
+        colorBgElevated: colors.background.secondary,
+        colorText: colors.text.primary,
+        colorTextPlaceholder: colors.text.tertiary,
+        colorTextDisabled: colors.text.tertiary,
+        colorBorder: colors.border.primary,
+        colorPrimaryHover: isDark ? "#177ddc" : "#1890ff",
+        borderRadius: 8,
+        controlHeight: 32,
+        controlHeightLG: 40,
+        controlHeightSM: 24,
+        boxShadow: "none",
+        boxShadowSecondary: "none",
+      },
+
+      // Dropdown Component
+      Dropdown: {
+        colorBgElevated: colors.background.overlay,
+        colorText: colors.text.primary,
+        colorTextSecondary: colors.text.secondary,
+        colorTextTertiary: colors.text.tertiary,
+        colorTextQuaternary: colors.text.tertiary,
+        colorTextDisabled: colors.text.tertiary,
+        colorBorder: colors.border.primary,
+        borderRadius: 12,
+        boxShadow: customTheme.shadows.lg,
+        boxShadowSecondary: customTheme.shadows.md,
+        padding: 8,
+        paddingLG: 12,
+        paddingSM: 6,
+        paddingXS: 4,
+      },
+
+      // Menu Component
+      Menu: {
+        colorBgContainer: colors.background.primary,
+        colorBgElevated: colors.background.secondary,
+        colorText: colors.text.primary,
+        colorTextSecondary: colors.text.secondary,
+        colorTextTertiary: colors.text.tertiary,
+        colorTextQuaternary: colors.text.tertiary,
+        colorTextDisabled: colors.text.tertiary,
+        colorItemBg: "transparent",
+        colorItemBgHover: colors.hover.primary,
+        colorItemBgSelected: colors.hover.secondary,
+        colorItemBgActive: colors.hover.secondary,
+        colorItemText: colors.text.primary,
+        colorItemTextHover: colors.text.primary,
+        colorItemTextSelected: colors.text.primary,
+        colorIcon: colors.text.secondary,
+        colorGroupTitle: colors.text.secondary,
+        borderRadius: 8,
+        borderRadiusLG: 12,
+        borderRadiusSM: 6,
+        padding: 8,
+        paddingLG: 12,
+        paddingSM: 6,
+        paddingXS: 4,
+        boxShadow: "none",
+        boxShadowSecondary: "none",
+      },
+
+      // Tooltip Component
+      Tooltip: {
+        colorBgSpotlight: colors.background.overlay,
+        colorTextLightSolid: colors.text.primary,
+        borderRadius: 8,
+        borderRadiusLG: 12,
+        borderRadiusSM: 6,
+        boxShadow: customTheme.shadows.lg,
+        boxShadowSecondary: customTheme.shadows.md,
+        padding: 8,
+        paddingLG: 12,
+        paddingSM: 6,
+        paddingXS: 4,
+      },
+
+      // Avatar Component
+      Avatar: {
+        colorBgContainer: isDark ? "#177ddc" : "#1890ff",
+        colorText: colors.text.primary,
+        colorTextPlaceholder: colors.text.tertiary,
+        colorTextDisabled: colors.text.tertiary,
+        borderRadius: 8,
+        borderRadiusLG: 12,
+        borderRadiusSM: 6,
+        boxShadow: "none",
+        boxShadowSecondary: "none",
+      },
+
+      // Card Component
+      Card: {
+        colorBgContainer: colors.background.primary,
+        colorBgElevated: colors.background.secondary,
+        colorText: colors.text.primary,
+        colorTextSecondary: colors.text.secondary,
+        colorTextTertiary: colors.text.tertiary,
+        colorTextQuaternary: colors.text.tertiary,
+        colorTextDisabled: colors.text.tertiary,
+        colorBorder: colors.border.primary,
+        colorBorderSecondary: colors.border.secondary,
+        borderRadius: 12,
+        borderRadiusLG: 16,
+        borderRadiusSM: 8,
+        boxShadow: customTheme.shadows.sm,
+        boxShadowSecondary: customTheme.shadows.md,
+        padding: 16,
+        paddingLG: 24,
+        paddingSM: 12,
+        paddingXS: 8,
+      },
+
+      // Modal Component
+      Modal: {
+        colorBgElevated: colors.background.primary,
+        colorText: colors.text.primary,
+        colorTextSecondary: colors.text.secondary,
+        colorTextTertiary: colors.text.tertiary,
+        colorTextQuaternary: colors.text.tertiary,
+        colorTextDisabled: colors.text.tertiary,
+        colorBorder: colors.border.primary,
+        borderRadius: 12,
+        borderRadiusLG: 16,
+        borderRadiusSM: 8,
+        boxShadow: customTheme.shadows.xl,
+        boxShadowSecondary: customTheme.shadows.lg,
+        padding: 24,
+        paddingLG: 32,
+        paddingSM: 16,
+        paddingXS: 12,
+      },
+
+      // Drawer Component
+      Drawer: {
+        colorBgElevated: colors.background.primary,
+        colorText: colors.text.primary,
+        colorTextSecondary: colors.text.secondary,
+        colorTextTertiary: colors.text.tertiary,
+        colorTextQuaternary: colors.text.tertiary,
+        colorTextDisabled: colors.text.tertiary,
+        colorBorder: colors.border.primary,
+        borderRadius: 12,
+        borderRadiusLG: 16,
+        borderRadiusSM: 8,
+        boxShadow: customTheme.shadows.xl,
+        boxShadowSecondary: customTheme.shadows.lg,
+        padding: 24,
+        paddingLG: 32,
+        paddingSM: 16,
+        paddingXS: 12,
+      },
+
+      // Table Component
+      Table: {
+        colorBgContainer: colors.background.primary,
+        colorBgElevated: colors.background.secondary,
+        colorText: colors.text.primary,
+        colorTextSecondary: colors.text.secondary,
+        colorTextTertiary: colors.text.tertiary,
+        colorTextQuaternary: colors.text.tertiary,
+        colorTextDisabled: colors.text.tertiary,
+        colorBorder: colors.border.primary,
+        colorBorderSecondary: colors.border.secondary,
+        colorFill: colors.hover.primary,
+        colorFillSecondary: colors.hover.secondary,
+        colorFillTertiary: colors.hover.primary,
+        colorFillQuaternary: colors.hover.secondary,
+        borderRadius: 8,
+        borderRadiusLG: 12,
+        borderRadiusSM: 6,
+        boxShadow: "none",
+        boxShadowSecondary: "none",
+        padding: 16,
+        paddingLG: 24,
+        paddingSM: 12,
+        paddingXS: 8,
+      },
+
+      // Form Component
+      Form: {
+        colorText: colors.text.primary,
+        colorTextSecondary: colors.text.secondary,
+        colorTextTertiary: colors.text.tertiary,
+        colorTextQuaternary: colors.text.tertiary,
+        colorTextDisabled: colors.text.tertiary,
+        colorError: colors.text.danger,
+        colorWarning: "#faad14",
+        colorSuccess: "#52c41a",
+        colorInfo: isDark ? "#177ddc" : "#1890ff",
+        borderRadius: 8,
+        borderRadiusLG: 12,
+        borderRadiusSM: 6,
+        padding: 16,
+        paddingLG: 24,
+        paddingSM: 12,
+        paddingXS: 8,
+      },
+
+      // Typography Component
+      Typography: {
+        colorText: colors.text.primary,
+        colorTextSecondary: colors.text.secondary,
+        colorTextTertiary: colors.text.tertiary,
+        colorTextQuaternary: colors.text.tertiary,
+        colorTextDisabled: colors.text.tertiary,
+        colorLink: isDark ? "#177ddc" : "#1890ff",
+        colorLinkHover: isDark ? "#1e88e5" : "#40a9ff",
+        colorLinkActive: isDark ? "#1565c0" : "#096dd9",
+        fontFamily:
+          "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'",
+        fontSize: 14,
+        fontSizeLG: 16,
+        fontSizeSM: 12,
+        lineHeight: 1.5714285714285714,
+        lineHeightLG: 1.5,
+        lineHeightSM: 1.6666666666666667,
+      },
+    },
+  };
+};
+
+export default createAntdTheme;

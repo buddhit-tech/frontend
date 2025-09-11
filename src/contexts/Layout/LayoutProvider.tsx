@@ -1,7 +1,9 @@
 import { useMemo, type FC, type PropsWithChildren } from "react";
 import { useLocalStorage } from "usehooks-ts";
+import { ConfigProvider } from "antd";
+import type { MenuTheme, ThemeConfig } from "antd";
 import LayoutContext from "./context";
-import type { MenuTheme } from "antd";
+import createAntdTheme from "../../styles/antdTheme";
 
 const LayoutProvider: FC<PropsWithChildren> = ({ children }) => {
   const [darkMode, setTheme] = useLocalStorage<MenuTheme>(
@@ -31,6 +33,10 @@ const LayoutProvider: FC<PropsWithChildren> = ({ children }) => {
 
   const toggleCollapse = () => setCollapsed(!collapsed);
 
+  const antdTheme = useMemo<ThemeConfig>(() => {
+    return createAntdTheme(isDark);
+  }, [isDark]);
+
   return (
     <LayoutContext.Provider
       value={{
@@ -43,7 +49,7 @@ const LayoutProvider: FC<PropsWithChildren> = ({ children }) => {
         bgColor,
       }}
     >
-      {children}
+      <ConfigProvider theme={antdTheme}>{children}</ConfigProvider>
     </LayoutContext.Provider>
   );
 };

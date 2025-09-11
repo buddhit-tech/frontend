@@ -1,57 +1,92 @@
 import type { FC } from "react";
-import { Button, Tooltip, Dropdown } from "antd";
-import { PaperclipIcon, ImageIcon } from "@phosphor-icons/react";
-import clsx from "clsx";
-import useLayout from "../../hooks/useLayout";
+import {
+  Plus,
+  Paperclip,
+  GoogleDriveLogo,
+  BookOpen,
+  Palette,
+  Lightbulb,
+  Binoculars,
+} from "@phosphor-icons/react";
+import { theme } from "antd";
+import type { MenuProps } from "antd";
+import ThemeAwareDropdown from "../common/ThemeAwareDropdown";
 
 type AttachmentButtonProps = {
-  onAttachmentSelect?: (type: string) => void;
+  onAttachmentSelect?: (key: string) => void;
 };
 
 const AttachmentButton: FC<AttachmentButtonProps> = ({
   onAttachmentSelect,
 }) => {
-  const { darkMode } = useLayout();
-  const isDark = darkMode === "dark";
-
-  const attachmentItems = [
-    {
-      key: "image",
-      label: "Upload Image",
-      icon: <ImageIcon size={16} />,
-    },
-    {
-      key: "file",
-      label: "Upload File",
-      icon: <PaperclipIcon size={16} />,
-    },
-  ];
+  const { token } = theme.useToken();
 
   const handleMenuClick = ({ key }: { key: string }) => {
     onAttachmentSelect?.(key);
   };
 
+  // Main menu items
+  const attachmentMenuItems: MenuProps["items"] = [
+    {
+      key: "add-photos-files",
+      label: "Add photos & files",
+      icon: <Paperclip size={16} />,
+    },
+    {
+      key: "add-google-drive",
+      label: "Add from Google Drive",
+      icon: <GoogleDriveLogo size={16} />,
+    },
+    {
+      key: "study-learn",
+      label: "Study and learn",
+      icon: <BookOpen size={16} />,
+    },
+    {
+      key: "create-image",
+      label: "Create image",
+      icon: <Palette size={16} />,
+    },
+    {
+      key: "think-longer",
+      label: "Think longer",
+      icon: <Lightbulb size={16} />,
+    },
+    {
+      key: "deep-research",
+      label: "Deep research",
+      icon: <Binoculars size={16} />,
+    },
+  ];
+
   return (
-    <Dropdown
-      menu={{ items: attachmentItems, onClick: handleMenuClick }}
-      trigger={["click"]}
+    <ThemeAwareDropdown
+      menuItems={attachmentMenuItems}
+      onMenuClick={handleMenuClick}
+      tooltip="Attach files"
+      tooltipPlacement="top"
       placement="topLeft"
+      minWidth="280px"
+      maxWidth="320px"
     >
-      <Tooltip title="Attach files" placement="top">
-        <Button
-          type="text"
-          size="small"
-          icon={<PaperclipIcon size={16} />}
-          className={clsx(
-            "!h-8 !w-8 !rounded-lg !border-0 transition-all duration-200",
-            "hover:!scale-105",
-            isDark
-              ? "!text-gray-400 hover:text-gray-300 !hover:bg-gray-700/50"
-              : "!text-gray-500 hover:text-gray-600 !hover:bg-gray-100/50"
-          )}
-        />
-      </Tooltip>
-    </Dropdown>
+      <button
+        className="flex items-center justify-center w-6 h-6 rounded transition-all duration-200 hover:scale-105"
+        style={{
+          color: token.colorTextSecondary,
+          backgroundColor: "transparent",
+        }}
+        onMouseEnter={(e) => {
+          e.currentTarget.style.color = token.colorText;
+          e.currentTarget.style.backgroundColor = token.colorFill;
+        }}
+        onMouseLeave={(e) => {
+          e.currentTarget.style.color = token.colorTextSecondary;
+          e.currentTarget.style.backgroundColor = "transparent";
+        }}
+      >
+        <Plus size={16} weight="bold" />
+      </button>
+    </ThemeAwareDropdown>
   );
 };
 

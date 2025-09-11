@@ -5,126 +5,18 @@ import {
   LogoutOutlined,
 } from "@ant-design/icons";
 import type { MenuProps } from "antd";
-import { Menu, Dropdown, Avatar } from "antd";
+import { Avatar } from "antd";
 import useLayout from "../../hooks/useLayout";
 import {
-  AtomIcon,
   CaretLeftIcon,
   CaretRightIcon,
-  ChatCircleDotsIcon,
-  DotsThreeVerticalIcon,
-  InfinityIcon,
   MoonIcon,
-  NotebookIcon,
   SunIcon,
 } from "@phosphor-icons/react";
 import clsx from "clsx";
 import { useNavigate } from "react-router-dom";
-import { useEffect } from "react";
-
-const injectMenuStyles = () => {
-  const styleId = "custom-menu-styles";
-  if (document.getElementById(styleId)) return;
-
-  const style = document.createElement("style");
-  style.id = styleId;
-  style.textContent = `
-    .custom-menu-light.ant-menu-light {
-      background-color: #f9f9f9 !important;
-    }
-    .custom-menu-light.ant-menu-light .ant-menu-item {
-      background-color: #f9f9f9 !important;
-    }
-    .custom-menu-light.ant-menu-light .ant-menu-submenu {
-      background-color: #f9f9f9 !important;
-    }
-    .custom-menu-light.ant-menu-light .ant-menu-sub {
-      background-color: #f9f9f9 !important;
-    }
-    .custom-menu-light.ant-menu-light .ant-menu-submenu-title {
-      background-color: #f9f9f9 !important;
-    }
-    
-    .custom-menu-dark.ant-menu-dark {
-      background-color: #19181a !important;
-    }
-    .custom-menu-dark.ant-menu-dark .ant-menu-item {
-      background-color: #19181a !important;
-    }
-    .custom-menu-dark.ant-menu-dark .ant-menu-submenu {
-      background-color: #19181a !important;
-    }
-    .custom-menu-dark.ant-menu-dark .ant-menu-sub {
-      background-color: #19181a !important;
-    }
-    .custom-menu-dark.ant-menu-dark .ant-menu-submenu-title {
-      background-color: #19181a !important;
-    }
-    .custom-menu-dark.ant-menu-dark .ant-menu-item-selected {
-      background-color: #19181a !important;
-    }
-    .custom-menu-dark.ant-menu-dark .ant-menu-submenu-selected {
-      background-color: #19181a !important;
-    }
-    .custom-menu-dark.ant-menu-dark .ant-menu-submenu-open {
-      background-color: #19181a !important;
-    }
-  `;
-  document.head.appendChild(style);
-};
-
-const DefaultMenuItems = [
-  {
-    key: "1.1",
-    label: "New Chat",
-    icon: <ChatCircleDotsIcon weight="bold" />,
-  },
-  {
-    key: "1",
-    label: "Discover",
-    icon: <InfinityIcon weight="bold" />,
-  },
-  {
-    key: "my_space",
-    label: "My Space",
-    icon: <AtomIcon weight="bold" />,
-    children: [
-      { key: "5", label: "Option 5" },
-      { key: "6", label: "Option 6" },
-      { key: "7", label: "Option 7" },
-      { key: "8", label: "Option 8" },
-    ],
-  },
-  {
-    key: "my_subjects",
-    label: "My Subjects",
-    icon: <NotebookIcon weight="bold" />,
-    children: [
-      {
-        key: "9",
-        label: (
-          <div className="flex items-center justify-between">
-            <span>Option 9</span>
-            <div className="p-1 flex items-center justify-center">
-              <DotsThreeVerticalIcon size={16} weight="bold" />
-            </div>
-          </div>
-        ),
-      },
-      {
-        key: "10",
-        label: (
-          <div className="flex items-center justify-between">
-            <span>Option 10</span>
-            <div className="p-1 flex items-center justify-center">
-              <DotsThreeVerticalIcon size={16} weight="bold" />
-            </div>
-          </div>
-        ),
-      },
-    ],
-  },
-];
+import SidebarMenu from "./menu/SidebarMenu";
+import ThemeAwareDropdown from "../common/ThemeAwareDropdown";
 
 const BrandLogo: FC = () => {
   const { collapsed, darkMode } = useLayout();
@@ -229,11 +121,13 @@ const UserProfile: FC = () => {
             : "border-[#f0f0f0] bg-[#f9f9f9]"
         )}
       >
-        <Dropdown
+        <ThemeAwareDropdown
           trigger={["click"]}
           placement="topRight"
-          menu={{ items: userMenuItems, onClick: handleMenuClick }}
-          overlayStyle={{ width: "256px" }}
+          menuItems={userMenuItems}
+          onMenuClick={handleMenuClick}
+          minWidth="256px"
+          maxWidth="280px"
         >
           <Avatar
             size={48}
@@ -243,7 +137,7 @@ const UserProfile: FC = () => {
               darkMode === "dark" ? "bg-[#177ddc]" : "bg-[#1890ff]"
             )}
           />
-        </Dropdown>
+        </ThemeAwareDropdown>
       </div>
     );
   }
@@ -257,11 +151,13 @@ const UserProfile: FC = () => {
           : "border-[#f0f0f0] bg-[#f9f9f9]"
       )}
     >
-      <Dropdown
-        menu={{ items: userMenuItems, onClick: handleMenuClick }}
+      <ThemeAwareDropdown
+        menuItems={userMenuItems}
+        onMenuClick={handleMenuClick}
         placement="topRight"
         trigger={["click"]}
-        overlayStyle={{ width: "256px" }}
+        minWidth="256px"
+        maxWidth="280px"
       >
         <div
           className={clsx(
@@ -298,7 +194,7 @@ const UserProfile: FC = () => {
             </div>
           </div>
         </div>
-      </Dropdown>
+      </ThemeAwareDropdown>
     </div>
   );
 };
@@ -335,10 +231,6 @@ const SidebarToggleButton: FC = () => {
 const Sidebar: FC = () => {
   const { collapsed, darkMode } = useLayout();
 
-  useEffect(() => {
-    injectMenuStyles();
-  }, []);
-
   if (collapsed) {
     return (
       <div
@@ -357,18 +249,7 @@ const Sidebar: FC = () => {
         >
           <BrandLogo />
         </div>
-        <Menu
-          mode="inline"
-          theme={darkMode}
-          inlineCollapsed={true}
-          items={DefaultMenuItems}
-          defaultOpenKeys={["sub1"]}
-          defaultSelectedKeys={["1"]}
-          className={clsx(
-            "flex-1 w-[80px] border-0 [&_.ant-menu]:border-0 [&_.ant-menu-inline]:border-0 transition-all duration-200 ease-in-out",
-            darkMode === "dark" ? "custom-menu-dark" : "custom-menu-light"
-          )}
-        />
+        <SidebarMenu collapsed={true} />
         <UserProfile />
         <SidebarToggleButton />
       </div>
@@ -387,18 +268,7 @@ const Sidebar: FC = () => {
       >
         <BrandLogo />
       </div>
-      <Menu
-        mode="inline"
-        theme={darkMode}
-        items={DefaultMenuItems}
-        className={clsx(
-          "flex-1 w-[256px] border-0 [&_.ant-menu]:border-0 [&_.ant-menu-inline]:border-0 transition-all duration-200 ease-in-out",
-          darkMode === "dark" ? "custom-menu-dark" : "custom-menu-light"
-        )}
-        inlineCollapsed={false}
-        defaultOpenKeys={["sub1"]}
-        defaultSelectedKeys={["1"]}
-      />
+      <SidebarMenu collapsed={false} />
       <UserProfile />
       <SidebarToggleButton />
     </div>

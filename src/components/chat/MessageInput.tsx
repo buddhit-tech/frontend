@@ -2,7 +2,6 @@ import type { FC } from "react";
 import { Input } from "antd";
 import styled from "styled-components";
 import useLayout from "../../hooks/useLayout";
-import EmojiButton from "./EmojiButton";
 
 type MessageInputProps = {
   value: string;
@@ -11,7 +10,6 @@ type MessageInputProps = {
   onFocus: () => void;
   onBlur: () => void;
   placeholder?: string;
-  onEmojiClick?: () => void;
 };
 
 const StyledTextArea = styled(Input.TextArea)<{ $isDark: boolean }>`
@@ -22,6 +20,7 @@ const StyledTextArea = styled(Input.TextArea)<{ $isDark: boolean }>`
   outline: none !important;
   font-size: 16px;
   line-height: 1.5;
+  padding: 0 !important;
   &:focus {
     box-shadow: none !important;
     border: 0 !important;
@@ -39,14 +38,13 @@ const MessageInput: FC<MessageInputProps> = ({
   onFocus,
   onChange,
   onKeyDown,
-  onEmojiClick,
-  placeholder = "Message ChatGPT...",
+  placeholder = "Ask anything",
 }) => {
   const { darkMode } = useLayout();
   const isDark = darkMode === "dark";
 
   return (
-    <div className="flex-1 relative flex flex-col gap-2">
+    <div className="flex-1 relative">
       <StyledTextArea
         value={value}
         onChange={(e) => onChange(e.target.value)}
@@ -57,7 +55,6 @@ const MessageInput: FC<MessageInputProps> = ({
         autoSize={{ minRows: 1, maxRows: 6 }}
         $isDark={isDark}
       />
-      <EmojiButton onEmojiClick={onEmojiClick} />
     </div>
   );
 };
