@@ -1,19 +1,44 @@
 import { Card, Checkbox, Form, Input, Segmented, Typography } from "antd";
 import { Link, useNavigate } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
+import clsx from "clsx";
+import useLayout from "../../hooks/useLayout";
+import { AccessType } from "../../contexts/Auth/types";
 
 const Login = () => {
   const [form] = Form.useForm();
   const navigate = useNavigate();
+  const { darkMode } = useLayout();
   const { authenticateUser } = useAuth();
 
-  const handleLoginUser = () => {
-    authenticateUser();
-    navigate("/");
+  const handleLoginUser = (values: any) => {
+    const selectedType = values?.accountType;
+    if (selectedType === "Student") {
+      authenticateUser(AccessType.STUDENT);
+      navigate("/");
+      return;
+    }
+    if (selectedType === "Teacher") {
+      authenticateUser(AccessType.TEACHER);
+      navigate("/");
+      return;
+    }
+    // Guard: if no selection, show an error and do not navigate
+    form.setFields([
+      {
+        name: "accountType",
+        errors: ["Please select account type"],
+      },
+    ]);
   };
 
   return (
-    <section className="bg-[#f6f6f6] h-[100vh] w-full flex flex-col items-center justify-center gap-3">
+    <section
+      className={clsx(
+        "h-[100vh] w-full flex flex-col items-center justify-center gap-3",
+        darkMode === "dark" ? "bg-[#212121]" : "bg-[#f6f6f6]"
+      )}
+    >
       <img
         src="https://static.vecteezy.com/system/resources/previews/022/227/364/non_2x/openai-chatgpt-logo-icon-free-png.png"
         className="w-[74px] h-[74px]"
@@ -22,7 +47,13 @@ const Login = () => {
       <Typography.Title level={2}>Sign in to your account</Typography.Title>
       <Card className="w-[450px] shadow-xl">
         <div className="flex flex-col items-center justify-center">
-          <Form form={form} layout="vertical" className="w-full">
+          <Form
+            form={form}
+            layout="vertical"
+            className="w-full"
+            onFinish={handleLoginUser}
+            initialValues={{ accountType: "Student" }}
+          >
             <Form.Item name="accountType">
               <Segmented size="large" block options={["Student", "Teacher"]} />
             </Form.Item>
@@ -44,7 +75,7 @@ const Login = () => {
             <br />
             <button
               className="w-full rounded-md bg-[#19181a] text-white py-2 hover:bg-[#282729]"
-              onClick={() => handleLoginUser()}
+              // onClick={() => handleLoginUser()}
             >
               Sign In
             </button>

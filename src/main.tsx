@@ -3,12 +3,15 @@ import { createRoot } from "react-dom/client";
 import App from "./App.tsx";
 import LayoutProvider from "./contexts/Layout/LayoutProvider.tsx";
 import AuthProvider from "./contexts/Auth/AuthProvider.tsx";
+import ChatProvider from "./contexts/Chat/ChatProvider.tsx";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <AuthProvider>
       <LayoutProvider>
-        <App />
+        <ChatProvider>
+          <App />
+        </ChatProvider>
       </LayoutProvider>
     </AuthProvider>
   </StrictMode>

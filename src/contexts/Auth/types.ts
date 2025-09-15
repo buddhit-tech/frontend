@@ -17,5 +17,5 @@ export type AuthContextType = {
   user: User | null;
   isLoggedIn: boolean;
   logoutUser: () => void;
-  authenticateUser: () => void;
+  authenticateUser: (accessType: AccessType) => void;
 };

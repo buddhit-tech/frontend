@@ -16,6 +16,12 @@ function AuthLayout() {
 }
 
 function DashboardLayout() {
+  // const { isLoggedIn } = useAuth();
+
+  // if (!isLoggedIn) {
+  //   return <Navigate to="/auth/login" />;
+  // }
+
   return (
     <AppLayout>
       <Outlet />

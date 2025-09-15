@@ -33,9 +33,10 @@ const LayoutProvider: FC<PropsWithChildren> = ({ children }) => {
 
   const toggleCollapse = () => setCollapsed(!collapsed);
 
-  const antdTheme = useMemo<ThemeConfig>(() => {
-    return createAntdTheme(isDark);
-  }, [isDark]);
+  const antdTheme = useMemo<ThemeConfig>(
+    () => createAntdTheme(isDark),
+    [isDark]
+  );
 
   return (
     <LayoutContext.Provider

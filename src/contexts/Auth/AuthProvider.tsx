@@ -11,14 +11,16 @@ const AuthProvider: FC<PropsWithChildren> = ({ children }) => {
     setIsLoggedIn(false);
   };
 
-  const authenticateUser = () => {
+  const authenticateUser = (accessType: AccessType) => {
+    console.log(`[DEBUG]`, accessType);
     setAuthUser({
       username: "test",
       firstName: "Test",
       lastName: "Test",
       fullName: "Test Test",
       email: "test@test.com",
-      accessType: AccessType.STUDENT,
+      avatar: null,
+      accessType: accessType,
     });
     setIsLoggedIn(true);
   };

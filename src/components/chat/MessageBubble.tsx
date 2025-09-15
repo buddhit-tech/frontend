@@ -16,12 +16,12 @@ const MessageBubble: FC<MessageBubbleProps> = ({ message }) => {
   return (
     <div
       className={clsx(
-        "w-full flex mb-4",
+        "w-full flex mb-4 min-w-0",
         isMe ? "justify-end" : "justify-start"
       )}
     >
       {isMe ? (
-        <div className="flex items-end gap-3 max-w-[80%]">
+        <div className="flex items-end gap-3 max-w-[80%] min-w-0">
           <div className="flex flex-col items-end flex-1 min-w-0">
             <div
               className={clsx(
@@ -39,7 +39,7 @@ const MessageBubble: FC<MessageBubbleProps> = ({ message }) => {
               </Typography.Text>
               <div className="absolute -bottom-1 -right-1 w-3 h-3 rotate-45 bg-blue-500" />
             </div>
-            <div className="mt-1 text-xs text-gray-500 dark:text-gray-400 px-1">
+            <div className="mt-1 text-xs text-gray-500 dark:text-gray-400 px-1 truncate">
               {message.time}
             </div>
           </div>
@@ -56,7 +56,7 @@ const MessageBubble: FC<MessageBubbleProps> = ({ message }) => {
           </Tooltip>
         </div>
       ) : (
-        <div className="flex items-start gap-3 max-w-[85%]">
+        <div className="flex items-start gap-3 max-w-[85%] min-w-0">
           <Tooltip title={message.author} placement="right">
             <Avatar
               size={32}

@@ -5,7 +5,7 @@ import {
   LogoutOutlined,
 } from "@ant-design/icons";
 import type { MenuProps } from "antd";
-import { Avatar } from "antd";
+import { Avatar, theme } from "antd";
 import useLayout from "../../hooks/useLayout";
 import {
   CaretLeftIcon,
@@ -13,12 +13,13 @@ import {
   MoonIcon,
   SunIcon,
 } from "@phosphor-icons/react";
-import clsx from "clsx";
 import { useNavigate } from "react-router-dom";
+import useAuth from "../../hooks/useAuth";
 import SidebarMenu from "./menu/SidebarMenu";
 import ThemeAwareDropdown from "../common/ThemeAwareDropdown";
 
 const BrandLogo: FC = () => {
+  const { token } = theme.useToken();
   const { collapsed, darkMode } = useLayout();
 
   const imageUrl =
@@ -27,23 +28,19 @@ const BrandLogo: FC = () => {
   if (!collapsed) {
     return (
       <div
-        className={clsx(
-          "flex items-center justify-between p-2 transition-colors duration-200 ease-in-out",
-          darkMode === "dark" ? "bg-[#19181a]" : "bg-[#f9f9f9]"
-        )}
+        className="flex items-center justify-between p-2 transition-colors duration-200 ease-in-out"
+        style={{
+          backgroundColor: darkMode === "dark" ? "#19181a" : "#f9f9f9",
+          borderBottom: `1px solid ${token.colorBorder}`,
+        }}
       >
         <div className="flex items-center gap-2">
           <img
             alt="Buddhit"
-            className="w-8 h-8 shrink-0 object-contain"
             src={imageUrl}
+            className="w-8 h-8 shrink-0 object-contain"
           />
-          <span
-            className={clsx(
-              "font-bold",
-              darkMode === "dark" ? "text-white" : "text-[#262626]"
-            )}
-          >
+          <span className="font-bold" style={{ color: token.colorText }}>
             Buddhit
           </span>
         </div>
@@ -53,10 +50,11 @@ const BrandLogo: FC = () => {
 
   return (
     <div
-      className={clsx(
-        "relative flex items-center justify-center h-10 p-2 transition-colors duration-200 ease-in-out",
-        darkMode === "dark" ? "bg-[#19181a]" : "bg-[#f9f9f9]"
-      )}
+      className="relative flex items-center justify-center h-10 p-2 transition-colors duration-200 ease-in-out"
+      style={{
+        backgroundColor: darkMode === "dark" ? "#19181a" : "#f9f9f9",
+        borderBottom: `1px solid ${token.colorBorder}`,
+      }}
     >
       <img alt="Buddhit" src={imageUrl} className="w-10 h-10 object-contain" />
     </div>
@@ -66,6 +64,8 @@ const BrandLogo: FC = () => {
 const UserProfile: FC = () => {
   const navigate = useNavigate();
   const { collapsed, darkMode, toggleMode } = useLayout();
+  const { token } = theme.useToken();
+  const { logoutUser } = useAuth();
 
   const userMenuItems: MenuProps["items"] = [
     {
@@ -106,7 +106,8 @@ const UserProfile: FC = () => {
         toggleMode(darkMode === "dark" ? false : true);
         break;
       case "logout":
-        console.log("Logout clicked");
+        logoutUser();
+        navigate("/auth/login", { replace: true });
         break;
     }
   };
@@ -114,12 +115,11 @@ const UserProfile: FC = () => {
   if (collapsed) {
     return (
       <div
-        className={clsx(
-          "flex justify-center p-2 border-t border-r transition-all duration-200 ease-in-out",
-          darkMode === "dark"
-            ? "border-[#303030] bg-[#19181a]"
-            : "border-[#f0f0f0] bg-[#f9f9f9]"
-        )}
+        className="flex justify-center p-2 border-t border-r transition-all duration-200 ease-in-out"
+        style={{
+          backgroundColor: darkMode === "dark" ? "#19181a" : "#f9f9f9",
+          borderColor: token.colorBorder,
+        }}
       >
         <ThemeAwareDropdown
           trigger={["click"]}
@@ -132,10 +132,10 @@ const UserProfile: FC = () => {
           <Avatar
             size={48}
             icon={<UserOutlined />}
-            className={clsx(
-              "cursor-pointer hover:opacity-80 transition-opacity",
-              darkMode === "dark" ? "bg-[#177ddc]" : "bg-[#1890ff]"
-            )}
+            className="cursor-pointer hover:opacity-80 transition-opacity"
+            style={{
+              backgroundColor: token.colorPrimary,
+            }}
           />
         </ThemeAwareDropdown>
       </div>
@@ -144,12 +144,11 @@ const UserProfile: FC = () => {
 
   return (
     <div
-      className={clsx(
-        "p-3 border-t border-r transition-all duration-200 ease-in-out",
-        darkMode === "dark"
-          ? "border-[#303030] bg-[#19181a]"
-          : "border-[#f0f0f0] bg-[#f9f9f9]"
-      )}
+      className="p-3 border-t border-r transition-all duration-200 ease-in-out"
+      style={{
+        backgroundColor: darkMode === "dark" ? "#19181a" : "#f9f9f9",
+        borderColor: token.colorBorder,
+      }}
     >
       <ThemeAwareDropdown
         menuItems={userMenuItems}
@@ -160,35 +159,35 @@ const UserProfile: FC = () => {
         maxWidth="280px"
       >
         <div
-          className={clsx(
-            "flex items-center gap-3 cursor-pointer rounded-lg p-2 transition-colors",
-            darkMode === "dark"
-              ? "hover:bg-[#177ddc] hover:bg-opacity-20"
-              : "hover:bg-[#f5f5f5]"
-          )}
+          className="flex items-center gap-3 cursor-pointer rounded-lg p-2 transition-colors"
+          style={{
+            backgroundColor: "transparent",
+          }}
+          onMouseEnter={(e) => {
+            e.currentTarget.style.backgroundColor = token.colorFill;
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.backgroundColor = "transparent";
+          }}
         >
           <Avatar
             size={48}
             icon={<UserOutlined />}
-            className={clsx(
-              "shrink-0",
-              darkMode === "dark" ? "bg-[#177ddc]" : "bg-[#1890ff]"
-            )}
+            className="shrink-0"
+            style={{
+              backgroundColor: token.colorPrimary,
+            }}
           />
           <div className="flex-1 min-w-0">
             <div
-              className={clsx(
-                "text-sm font-medium truncate",
-                darkMode === "dark" ? "text-white" : "text-[#262626]"
-              )}
+              className="text-sm font-medium truncate"
+              style={{ color: token.colorText }}
             >
               John Doe
             </div>
             <div
-              className={clsx(
-                "text-xs truncate",
-                darkMode === "dark" ? "text-[#8c8c8c]" : "text-[#595959]"
-              )}
+              className="text-xs truncate"
+              style={{ color: token.colorTextSecondary }}
             >
               john.doe@example.com
             </div>
@@ -200,7 +199,8 @@ const UserProfile: FC = () => {
 };
 
 const SidebarToggleButton: FC = () => {
-  const { darkMode, toggleCollapse, collapsed } = useLayout();
+  const { toggleCollapse, collapsed } = useLayout();
+  const { token } = theme.useToken();
 
   const Icon = collapsed ? CaretRightIcon : CaretLeftIcon;
 
@@ -208,19 +208,23 @@ const SidebarToggleButton: FC = () => {
     <div className="absolute top-[15px] right-[-12px] z-10">
       <div
         onClick={toggleCollapse}
-        className={clsx(
-          "h-[28px] w-[28px] rounded-full flex items-center justify-center cursor-pointer",
-          "transition-all duration-200 ease-in-out transform hover:scale-110",
-          "shadow-lg border backdrop-blur-sm",
-          darkMode === "dark"
-            ? "bg-[#177ddc] hover:bg-[#1e88e5] border-[#177ddc]/30 shadow-[#177ddc]/20"
-            : "bg-white hover:bg-[#f8f9fa] border-[#e0e0e0] shadow-[#000000]/10"
-        )}
+        className="h-[28px] w-[28px] rounded-full flex items-center justify-center cursor-pointer transition-all duration-200 ease-in-out transform hover:scale-110 shadow-lg border backdrop-blur-sm"
+        style={{
+          backgroundColor: token.colorPrimary,
+          borderColor: token.colorPrimary + "30",
+          boxShadow: `0 4px 12px ${token.colorPrimary}20`,
+        }}
+        onMouseEnter={(e) => {
+          e.currentTarget.style.backgroundColor = token.colorPrimaryHover;
+        }}
+        onMouseLeave={(e) => {
+          e.currentTarget.style.backgroundColor = token.colorPrimary;
+        }}
       >
         <Icon
           size={16}
           weight="bold"
-          color={darkMode === "dark" ? "white" : "#177ddc"}
+          color="white"
           className="transition-transform duration-200 ease-in-out"
         />
       </div>
@@ -230,22 +234,22 @@ const SidebarToggleButton: FC = () => {
 
 const Sidebar: FC = () => {
   const { collapsed, darkMode } = useLayout();
+  const { token } = theme.useToken();
 
   if (collapsed) {
     return (
       <div
-        className={clsx(
-          "relative w-[80px] h-[100vh] flex flex-col transition-all duration-200 ease-in-out",
-          darkMode === "dark" ? "bg-[#212121]" : "bg-[#f9f9f9]"
-        )}
+        className="relative w-[80px] h-[100vh] flex flex-col transition-all duration-200 ease-in-out"
+        style={{
+          backgroundColor: token.colorBgLayout,
+          borderRight: `1px solid ${token.colorBorder}`,
+        }}
       >
         <div
-          className={clsx(
-            "p-2 border-r transition-all duration-200 ease-in-out",
-            darkMode === "dark"
-              ? "border-[#303030] bg-[#19181a]"
-              : "border-[#f0f0f0] bg-[#f9f9f9]"
-          )}
+          className="p-2 transition-all duration-200 ease-in-out"
+          style={{
+            backgroundColor: darkMode === "dark" ? "#19181a" : "#f9f9f9",
+          }}
         >
           <BrandLogo />
         </div>
@@ -257,14 +261,18 @@ const Sidebar: FC = () => {
   }
 
   return (
-    <div className="relative w-[256px] h-[100vh] flex flex-col transition-all duration-200 ease-in-out">
+    <div
+      className="relative w-[256px] h-[100vh] flex flex-col transition-all duration-200 ease-in-out"
+      style={{
+        backgroundColor: token.colorBgLayout,
+        borderRight: `1px solid ${token.colorBorder}`,
+      }}
+    >
       <div
-        className={clsx(
-          "p-2 border-r transition-all duration-200 ease-in-out",
-          darkMode === "dark"
-            ? "border-[#303030] bg-[#19181a]"
-            : "border-[#f0f0f0] bg-[#f9f9f9]"
-        )}
+        className="p-2 transition-all duration-200 ease-in-out"
+        style={{
+          backgroundColor: darkMode === "dark" ? "#19181a" : "#f9f9f9",
+        }}
       >
         <BrandLogo />
       </div>

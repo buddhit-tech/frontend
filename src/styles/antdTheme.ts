@@ -6,49 +6,41 @@ export const createAntdTheme = (isDark: boolean): ThemeConfig => {
 
   return {
     token: {
-      // Color Palette
       colorPrimary: isDark ? "#177ddc" : "#1890ff",
       colorSuccess: "#52c41a",
       colorWarning: "#faad14",
       colorError: colors.text.danger,
       colorInfo: isDark ? "#177ddc" : "#1890ff",
 
-      // Background Colors
       colorBgContainer: colors.background.primary,
       colorBgElevated: colors.background.secondary,
       colorBgLayout: colors.background.tertiary,
       colorBgMask: "rgba(0, 0, 0, 0.45)",
       colorBgSpotlight: colors.background.overlay,
 
-      // Text Colors
       colorText: colors.text.primary,
       colorTextSecondary: colors.text.secondary,
       colorTextTertiary: colors.text.tertiary,
       colorTextQuaternary: colors.text.tertiary,
       colorTextDisabled: colors.text.tertiary,
 
-      // Border Colors
       colorBorder: colors.border.primary,
       colorBorderSecondary: colors.border.secondary,
 
-      // Fill Colors
       colorFill: colors.hover.primary,
       colorFillSecondary: colors.hover.secondary,
       colorFillTertiary: colors.hover.primary,
       colorFillQuaternary: colors.hover.secondary,
 
-      // Interactive Colors
       colorLink: isDark ? "#177ddc" : "#1890ff",
       colorLinkHover: isDark ? "#1e88e5" : "#40a9ff",
       colorLinkActive: isDark ? "#1565c0" : "#096dd9",
 
-      // Layout
       borderRadius: 8,
       borderRadiusLG: 12,
       borderRadiusSM: 6,
       borderRadiusXS: 4,
 
-      // Spacing
       padding: 16,
       paddingLG: 24,
       paddingSM: 12,
@@ -70,16 +62,13 @@ export const createAntdTheme = (isDark: boolean): ThemeConfig => {
       lineHeightLG: 1.5,
       lineHeightSM: 1.6666666666666667,
 
-      // Font Family
       fontFamily:
         "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'",
 
-      // Shadow
       boxShadow: customTheme.shadows.md,
       boxShadowSecondary: customTheme.shadows.sm,
       boxShadowTertiary: customTheme.shadows.lg,
 
-      // Motion
       motionDurationFast: "0.1s",
       motionDurationMid: "0.2s",
       motionDurationSlow: "0.3s",
@@ -89,7 +78,6 @@ export const createAntdTheme = (isDark: boolean): ThemeConfig => {
       zIndexPopupBase: 1000,
     },
     components: {
-      // Button Component
       Button: {
         colorPrimary: isDark ? "#177ddc" : "#1890ff",
         colorPrimaryHover: isDark ? "#1e88e5" : "#40a9ff",
@@ -116,7 +104,6 @@ export const createAntdTheme = (isDark: boolean): ThemeConfig => {
         boxShadowSecondary: "none",
       },
 
-      // Input Component
       Input: {
         colorBgContainer: colors.background.primary,
         colorText: colors.text.primary,
@@ -131,8 +118,6 @@ export const createAntdTheme = (isDark: boolean): ThemeConfig => {
         boxShadow: "none",
         boxShadowSecondary: "none",
       },
-
-      // Select Component
       Select: {
         colorBgContainer: colors.background.primary,
         colorBgElevated: colors.background.secondary,
@@ -148,8 +133,6 @@ export const createAntdTheme = (isDark: boolean): ThemeConfig => {
         boxShadow: "none",
         boxShadowSecondary: "none",
       },
-
-      // Dropdown Component
       Dropdown: {
         colorBgElevated: colors.background.overlay,
         colorText: colors.text.primary,
@@ -166,8 +149,6 @@ export const createAntdTheme = (isDark: boolean): ThemeConfig => {
         paddingSM: 6,
         paddingXS: 4,
       },
-
-      // Menu Component
       Menu: {
         colorBgContainer: colors.background.primary,
         colorBgElevated: colors.background.secondary,
@@ -195,8 +176,6 @@ export const createAntdTheme = (isDark: boolean): ThemeConfig => {
         boxShadow: "none",
         boxShadowSecondary: "none",
       },
-
-      // Tooltip Component
       Tooltip: {
         colorBgSpotlight: colors.background.overlay,
         colorTextLightSolid: colors.text.primary,
@@ -210,8 +189,6 @@ export const createAntdTheme = (isDark: boolean): ThemeConfig => {
         paddingSM: 6,
         paddingXS: 4,
       },
-
-      // Avatar Component
       Avatar: {
         colorBgContainer: isDark ? "#177ddc" : "#1890ff",
         colorText: colors.text.primary,
@@ -223,8 +200,6 @@ export const createAntdTheme = (isDark: boolean): ThemeConfig => {
         boxShadow: "none",
         boxShadowSecondary: "none",
       },
-
-      // Card Component
       Card: {
         colorBgContainer: colors.background.primary,
         colorBgElevated: colors.background.secondary,
@@ -245,8 +220,6 @@ export const createAntdTheme = (isDark: boolean): ThemeConfig => {
         paddingSM: 12,
         paddingXS: 8,
       },
-
-      // Modal Component
       Modal: {
         colorBgElevated: colors.background.primary,
         colorText: colors.text.primary,
@@ -265,8 +238,6 @@ export const createAntdTheme = (isDark: boolean): ThemeConfig => {
         paddingSM: 16,
         paddingXS: 12,
       },
-
-      // Drawer Component
       Drawer: {
         colorBgElevated: colors.background.primary,
         colorText: colors.text.primary,
@@ -285,8 +256,6 @@ export const createAntdTheme = (isDark: boolean): ThemeConfig => {
         paddingSM: 16,
         paddingXS: 12,
       },
-
-      // Table Component
       Table: {
         colorBgContainer: colors.background.primary,
         colorBgElevated: colors.background.secondary,
@@ -311,8 +280,6 @@ export const createAntdTheme = (isDark: boolean): ThemeConfig => {
         paddingSM: 12,
         paddingXS: 8,
       },
-
-      // Form Component
       Form: {
         colorText: colors.text.primary,
         colorTextSecondary: colors.text.secondary,
@@ -331,8 +298,6 @@ export const createAntdTheme = (isDark: boolean): ThemeConfig => {
         paddingSM: 12,
         paddingXS: 8,
       },
-
-      // Typography Component
       Typography: {
         colorText: colors.text.primary,
         colorTextSecondary: colors.text.secondary,

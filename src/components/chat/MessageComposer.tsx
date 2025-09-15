@@ -78,7 +78,7 @@ const MessageComposer: FC<MessageComposerProps> = ({
   };
 
   return (
-    <div className="w-full max-w-4xl mx-auto px-4 py-6">
+    <div className="w-full max-w-4xl mx-auto px-4 py-6 min-w-0">
       <div
         className={clsx(
           "relative rounded-2xl border transition-all duration-200 group",
@@ -97,12 +97,12 @@ const MessageComposer: FC<MessageComposerProps> = ({
           e.currentTarget.style.borderColor = token.colorBorder;
         }}
       >
-        <div className="flex items-center gap-3 px-4 py-3">
+        <div className="flex items-center gap-3 px-4 py-3 min-w-0">
           {/* Attachment Button with Dropdown */}
           <AttachmentButton onAttachmentSelect={handleAttachmentSelect} />
 
           {/* Message Input */}
-          <div className="flex-1">
+          <div className="flex-1 min-w-0">
             <MessageInput
               value={message}
               onChange={setMessage}
@@ -114,7 +114,7 @@ const MessageComposer: FC<MessageComposerProps> = ({
           </div>
 
           {/* Voice and Send Buttons */}
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-2 shrink-0">
             {/* Voice Button */}
             <button
               onClick={handleVoiceClick}

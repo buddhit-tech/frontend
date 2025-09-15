@@ -5,6 +5,11 @@ import useLayout from "../../../hooks/useLayout";
 import { DefaultMenuItems } from "./menuData.tsx";
 import SidebarMenuItemWithFixedOption from "./SidebarMenuItemWithFixedOption";
 import DeleteableMenuItem from "./DeleteableMenuItem";
+import { v4 } from "uuid";
+import { eventBus } from "../../../utils/eventBus.ts";
+import useChat from "../../../hooks/useChat.tsx";
+import useAuth from "../../../hooks/useAuth.tsx";
+import { AccessType } from "../../../contexts/Auth/types.ts";
 
 const injectMenuStyles = () => {
   const styleId = "custom-menu-styles";
@@ -62,11 +67,25 @@ interface SidebarMenuProps {
 }
 
 const SidebarMenu: FC<SidebarMenuProps> = ({ collapsed }) => {
+  const { user } = useAuth();
   const { darkMode } = useLayout();
+  const { updateActiveChatRoom } = useChat();
 
   useEffect(() => {
     injectMenuStyles();
   }, []);
+
+  const handleOptionClick = (chatRoomId: string) => {
+    if (user?.accessType === AccessType.TEACHER) {
+      eventBus.emit("teacherAction", {
+        action: "optionClicked",
+        data: { chatRoomId, userType: user?.accessType },
+      });
+      updateActiveChatRoom(chatRoomId);
+    } else {
+      // Just open the specific chat of the user with the teacher
+    }
+  };
 
   const menuItems = useMemo(() => {
     return DefaultMenuItems.map((item: any) => {
@@ -82,6 +101,7 @@ const SidebarMenu: FC<SidebarMenuProps> = ({ collapsed }) => {
             } else if (child.hasOptions) {
               return {
                 ...child,
+                chatRoomId: v4(),
                 label: <SidebarMenuItemWithFixedOption label={child.label} />,
               };
             }
@@ -93,12 +113,17 @@ const SidebarMenu: FC<SidebarMenuProps> = ({ collapsed }) => {
     });
   }, []);
 
+  const handleMenuClick = ({ item }: any) => {
+    handleOptionClick(item?.props?.chatRoomId ?? "");
+  };
+
   return (
     <Menu
       mode="inline"
       theme={darkMode}
       inlineCollapsed={collapsed}
       items={menuItems}
+      onClick={handleMenuClick}
       defaultOpenKeys={["sub1"]}
       defaultSelectedKeys={["1"]}
       className={clsx(

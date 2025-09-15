@@ -5,13 +5,13 @@ import WelcomeHeader from "./WelcomeHeader";
 
 const NewChat: FC = () => {
   return (
-    <DashboardPageWrapper showHeader title="New Chat">
-      <div className="w-full h-full flex flex-col items-center justify-center">
-        <div className="flex flex-col items-center justify-center w-[1020px]">
-          <div className="max-w-3xl w-full mb-4">
+    <DashboardPageWrapper showHeader={false} title="New Chat">
+      <div className="w-full h-full flex flex-col items-center justify-center min-w-0 overflow-x-hidden">
+        <div className="flex flex-col items-center justify-center w-full max-w-5xl min-w-0 px-4">
+          <div className="max-w-3xl w-full mb-4 min-w-0">
             <WelcomeHeader />
           </div>
-          <div className="w-full">
+          <div className="w-full min-w-0">
             <MessageComposer placeholder="Message Buddhit..." />
           </div>
         </div>
