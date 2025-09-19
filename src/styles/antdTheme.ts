@@ -69,8 +69,8 @@ export const createAntdTheme = (isDark: boolean): ThemeConfig => {
       boxShadowSecondary: customTheme.shadows.sm,
       boxShadowTertiary: customTheme.shadows.lg,
 
-      motionDurationFast: "0.1s",
-      motionDurationMid: "0.2s",
+      motionDurationFast: "0.3s",
+      motionDurationMid: "0.3s",
       motionDurationSlow: "0.3s",
 
       // Z-index

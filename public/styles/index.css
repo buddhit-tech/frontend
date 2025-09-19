@@ -1,1 +1,165 @@
 @import "tailwindcss";
+
+/* Remove default Ant Design button shadows globally */
+.ant-btn {
+  box-shadow: none !important;
+}
+
+.ant-btn:hover {
+  box-shadow: none !important;
+}
+
+.ant-btn:focus {
+  box-shadow: none !important;
+}
+
+.ant-btn:active {
+  box-shadow: none !important;
+}
+
+/* Global theme transition styles for smooth switching */
+* {
+  transition: background-color 0.3s ease, color 0.3s ease,
+    border-color 0.3s ease, box-shadow 0.3s ease !important;
+}
+
+/* Specific transitions for common elements */
+body,
+html {
+  transition: background-color 0.3s ease !important;
+}
+
+/* Ant Design components smooth transitions */
+.ant-layout,
+.ant-layout-header,
+.ant-layout-sider,
+.ant-layout-content,
+.ant-layout-footer,
+.ant-menu,
+.ant-menu-item,
+.ant-menu-submenu,
+.ant-card,
+.ant-card-body,
+.ant-input,
+.ant-select,
+.ant-select-selector,
+.ant-dropdown,
+.ant-modal,
+.ant-drawer,
+.ant-tooltip,
+.ant-popover,
+.ant-message,
+.ant-notification {
+  transition: background-color 0.3s ease, color 0.3s ease,
+    border-color 0.3s ease, box-shadow 0.3s ease !important;
+}
+
+/* Enhanced transitions for sidebar and menu components */
+.ant-layout-sider,
+.ant-layout-sider-children,
+.ant-menu,
+.ant-menu-root,
+.ant-menu-item,
+.ant-menu-item-selected,
+.ant-menu-item-active,
+.ant-menu-submenu,
+.ant-menu-submenu-title,
+.ant-menu-submenu-open,
+.ant-menu-submenu-active,
+.ant-menu-submenu-selected,
+.ant-menu-submenu-popup,
+.ant-menu-vertical,
+.ant-menu-horizontal,
+.ant-menu-inline {
+  transition: background-color 0.3s ease, color 0.3s ease,
+    border-color 0.3s ease, box-shadow 0.3s ease !important;
+}
+
+/* Specific menu item transitions */
+.ant-menu-item *,
+.ant-menu-submenu *,
+.ant-menu-submenu-title *,
+.ant-menu-item-group-title,
+.ant-menu-item-group-list {
+  transition: color 0.3s ease, background-color 0.3s ease !important;
+}
+
+/* Menu icon transitions */
+.ant-menu-item-icon,
+.ant-menu-submenu-icon {
+  transition: color 0.3s ease !important;
+}
+
+/* Specific transitions for inline styled elements */
+div[style*="backgroundColor"],
+div[style*="color"],
+div[style*="borderColor"],
+div[style*="border"],
+span[style*="color"] {
+  transition: background-color 0.3s ease, color 0.3s ease,
+    border-color 0.3s ease !important;
+}
+
+/* Avatar transitions */
+.ant-avatar {
+  transition: background-color 0.3s ease, color 0.3s ease !important;
+  border-radius: 50% !important;
+  overflow: hidden !important;
+  flex-shrink: 0 !important;
+}
+
+/* Enhanced sidebar specific transitions */
+.flex.items-center.justify-between,
+.flex.items-center.justify-center,
+.flex.justify-center,
+.flex.items-center.gap-3 {
+  transition: background-color 0.3s ease, color 0.3s ease,
+    border-color 0.3s ease !important;
+}
+
+/* Text elements */
+p,
+span,
+div,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+a,
+li,
+td,
+th {
+  transition: color 0.3s ease !important;
+}
+
+/* Form elements */
+input,
+textarea,
+select,
+button {
+  transition: background-color 0.3s ease, color 0.3s ease,
+    border-color 0.3s ease !important;
+}
+
+/* Ensure smooth transitions for all styled-components */
+[class*="styled-components"] {
+  transition: all 0.3s ease !important;
+}
+
+/* Theme transition class for root element */
+.theme-transition {
+  transition: all 0.3s ease !important;
+}
+
+.theme-transition * {
+  transition: background-color 0.3s ease, color 0.3s ease,
+    border-color 0.3s ease, box-shadow 0.3s ease !important;
+}
+
+/* Prevent transition on hover for better UX */
+.theme-transition *:hover {
+  transition: background-color 0.3s ease, color 0.3s ease,
+    border-color 0.3s ease, box-shadow 0.3s ease !important;
+}

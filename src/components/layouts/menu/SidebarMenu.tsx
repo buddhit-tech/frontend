@@ -20,43 +20,56 @@ const injectMenuStyles = () => {
   style.textContent = `
     .custom-menu-light.ant-menu-light {
       background-color: #f9f9f9 !important;
+      transition: background-color 0.3s ease !important;
     }
     .custom-menu-light.ant-menu-light .ant-menu-item {
       background-color: #f9f9f9 !important;
+      transition: background-color 0.3s ease, color 0.3s ease !important;
     }
     .custom-menu-light.ant-menu-light .ant-menu-submenu {
       background-color: #f9f9f9 !important;
+      transition: background-color 0.3s ease, color 0.3s ease !important;
     }
     .custom-menu-light.ant-menu-light .ant-menu-sub {
       background-color: #f9f9f9 !important;
+      transition: background-color 0.3s ease !important;
     }
     .custom-menu-light.ant-menu-light .ant-menu-submenu-title {
       background-color: #f9f9f9 !important;
+      transition: background-color 0.3s ease, color 0.3s ease !important;
     }
     
     .custom-menu-dark.ant-menu-dark {
       background-color: #19181a !important;
+      transition: background-color 0.3s ease !important;
     }
     .custom-menu-dark.ant-menu-dark .ant-menu-item {
       background-color: #19181a !important;
+      transition: background-color 0.3s ease, color 0.3s ease !important;
     }
     .custom-menu-dark.ant-menu-dark .ant-menu-submenu {
       background-color: #19181a !important;
+      transition: background-color 0.3s ease, color 0.3s ease !important;
     }
     .custom-menu-dark.ant-menu-dark .ant-menu-sub {
       background-color: #19181a !important;
+      transition: background-color 0.3s ease !important;
     }
     .custom-menu-dark.ant-menu-dark .ant-menu-submenu-title {
       background-color: #19181a !important;
+      transition: background-color 0.3s ease, color 0.3s ease !important;
     }
     .custom-menu-dark.ant-menu-dark .ant-menu-item-selected {
       background-color: #19181a !important;
+      transition: background-color 0.3s ease, color 0.3s ease !important;
     }
     .custom-menu-dark.ant-menu-dark .ant-menu-submenu-selected {
       background-color: #19181a !important;
+      transition: background-color 0.3s ease, color 0.3s ease !important;
     }
     .custom-menu-dark.ant-menu-dark .ant-menu-submenu-open {
       background-color: #19181a !important;
+      transition: background-color 0.3s ease, color 0.3s ease !important;
     }
   `;
   document.head.appendChild(style);
