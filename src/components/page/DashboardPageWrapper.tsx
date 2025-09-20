@@ -26,7 +26,7 @@ const DashboardPageWrapper: FC<DashboardPageWrapperProps> = ({
       {isChatHeader && <ChatHeader {...restProps} />}
       <div
         className={clsx(
-          "flex-1 overflow-y-auto py-8",
+          "flex-1 overflow-y-auto py-8 px-5",
           isDark ? "bg-[#212121]" : "bg-[#fff]"
         )}
       >

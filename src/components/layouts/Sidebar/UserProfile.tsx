@@ -5,9 +5,10 @@ import {
   LogoutOutlined,
 } from "@ant-design/icons";
 import type { MenuProps } from "antd";
-import { Avatar, theme } from "antd";
+import { Avatar, theme, Typography } from "antd";
 import { MoonIcon, SunIcon } from "@phosphor-icons/react";
 import { useNavigate } from "react-router-dom";
+import clsx from "clsx";
 import useLayout from "../../../hooks/useLayout";
 import useAuth from "../../../hooks/useAuth";
 import ThemeAwareDropdown from "../../common/ThemeAwareDropdown";
@@ -16,13 +17,13 @@ import {
   UserProfileContent,
   UserProfileInfo,
   UserInfo,
-  UserName,
-  UserEmail,
 } from "./styled";
+
+const { Text } = Typography;
 
 const UserProfile: FC = () => {
   const navigate = useNavigate();
-  const { collapsed, darkMode, toggleMode } = useLayout();
+  const { collapsed, darkMode, toggleMode, isDark } = useLayout();
   const { token } = theme.useToken();
   const { logoutUser } = useAuth();
 
@@ -62,7 +63,7 @@ const UserProfile: FC = () => {
         console.log("Settings clicked");
         break;
       case "mode":
-        toggleMode(darkMode === "dark" ? false : true);
+        toggleMode(isDark ? false : true);
         break;
       case "logout":
         logoutUser();
@@ -74,9 +75,11 @@ const UserProfile: FC = () => {
   if (collapsed) {
     return (
       <UserProfileContainer
+        $mode={darkMode}
+        $collapsed={collapsed}
+        $borderColor={isDark ? "#19181a" : "#D2D5D9"}
         style={{
-          backgroundColor: darkMode === "dark" ? "#19181a" : "#f9f9f9",
-          borderColor: token.colorBorder,
+          backgroundColor: isDark ? "#19181a" : "#f9f9f9",
         }}
       >
         <UserProfileContent $collapsed={collapsed}>
@@ -106,9 +109,10 @@ const UserProfile: FC = () => {
 
   return (
     <UserProfileContainer
+      $mode={darkMode}
+      $borderColor={token.colorBorder}
       style={{
         backgroundColor: darkMode === "dark" ? "#19181a" : "#f9f9f9",
-        borderColor: token.colorBorder,
       }}
     >
       <ThemeAwareDropdown
@@ -120,6 +124,10 @@ const UserProfile: FC = () => {
         maxWidth="280px"
       >
         <UserProfileInfo
+          className={clsx(
+            "hover:bg-opacity-80 transition-all duration-200",
+            "rounded-lg p-2"
+          )}
           onMouseEnter={(e) => {
             e.currentTarget.style.backgroundColor = token.colorFill;
           }}
@@ -138,10 +146,24 @@ const UserProfile: FC = () => {
             }}
           />
           <UserInfo>
-            <UserName style={{ color: token.colorText }}>John Doe</UserName>
-            <UserEmail style={{ color: token.colorTextSecondary }}>
+            <Text
+              className={clsx(
+                "text-sm font-medium block overflow-hidden text-ellipsis whitespace-nowrap",
+                "transition-colors duration-200"
+              )}
+              style={{ color: token.colorText }}
+            >
+              John Doe
+            </Text>
+            <Text
+              className={clsx(
+                "text-xs block overflow-hidden text-ellipsis whitespace-nowrap",
+                "transition-colors duration-200"
+              )}
+              style={{ color: token.colorTextSecondary }}
+            >
               john.doe@example.com
-            </UserEmail>
+            </Text>
           </UserInfo>
         </UserProfileInfo>
       </ThemeAwareDropdown>

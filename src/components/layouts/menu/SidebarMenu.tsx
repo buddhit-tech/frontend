@@ -140,7 +140,8 @@ const SidebarMenu: FC<SidebarMenuProps> = ({ collapsed }) => {
       defaultOpenKeys={["sub1"]}
       defaultSelectedKeys={["1"]}
       className={clsx(
-        "flex-1 border-0 [&_.ant-menu]:border-0 [&_.ant-menu-inline]:border-0 transition-all duration-200 ease-in-out",
+        "flex-1 border-0 [&_.ant-menu]:border-0 [&_.ant-menu-inline]:border-0",
+        "transition-all duration-200 ease-in-out",
         collapsed ? "w-[80px]" : "w-[256px]",
         darkMode === "dark" ? "custom-menu-dark" : "custom-menu-light"
       )}

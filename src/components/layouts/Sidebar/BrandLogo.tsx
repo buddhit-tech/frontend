@@ -1,16 +1,11 @@
 import type { FC } from "react";
 import { theme } from "antd";
 import useLayout from "../../../hooks/useLayout";
-import {
-  BrandLogoContainer,
-  BrandLogoContent,
-  BrandImage,
-  BrandText,
-} from "./styled";
+import { BrandLogoContainer, BrandImage, BrandText } from "./styled";
 
 const BrandLogo: FC = () => {
   const { token } = theme.useToken();
-  const { collapsed, darkMode } = useLayout();
+  const { collapsed, isDark } = useLayout();
 
   const imageUrl =
     "https://static.vecteezy.com/system/resources/previews/022/227/364/non_2x/openai-chatgpt-logo-icon-free-png.png";
@@ -19,15 +14,14 @@ const BrandLogo: FC = () => {
     <BrandLogoContainer
       $collapsed={collapsed}
       style={{
-        backgroundColor: darkMode === "dark" ? "#19181a" : "#f9f9f9",
-        borderColor: token.colorBorder,
+        backgroundColor: isDark ? "#19181a" : "#f9f9f9",
       }}
     >
       {!collapsed && (
-        <BrandLogoContent>
+        <div className="flex items-center gap-2">
           <BrandImage alt="Buddhit" src={imageUrl} $collapsed={collapsed} />
           <BrandText style={{ color: token.colorText }}>Buddhit</BrandText>
-        </BrandLogoContent>
+        </div>
       )}
       {collapsed && (
         <BrandImage alt="Buddhit" src={imageUrl} $collapsed={collapsed} />
