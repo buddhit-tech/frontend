@@ -1,5 +1,6 @@
 import { type FC, useEffect, useMemo } from "react";
 import { Menu } from "antd";
+import { useNavigate } from "react-router-dom";
 import clsx from "clsx";
 import useLayout from "../../../hooks/useLayout";
 import { DefaultMenuItems } from "./menuData.tsx";
@@ -80,6 +81,7 @@ interface SidebarMenuProps {
 }
 
 const SidebarMenu: FC<SidebarMenuProps> = ({ collapsed }) => {
+  const navigate = useNavigate();
   const { user } = useAuth();
   const { darkMode } = useLayout();
   const { updateActiveChatRoom } = useChat();
@@ -126,8 +128,20 @@ const SidebarMenu: FC<SidebarMenuProps> = ({ collapsed }) => {
     });
   }, []);
 
-  const handleMenuClick = ({ item }: any) => {
-    handleOptionClick(item?.props?.chatRoomId ?? "");
+  const handleMenuClick = ({ key }: any) => {
+    // Handle navigation for specific menu items
+    switch (key) {
+      case "1": // Discover
+        navigate("/discover");
+        break;
+      case "1.1": // New Chat
+        navigate("/");
+        break;
+      default:
+        // Handle other menu items (chat rooms, etc.)
+        handleOptionClick(key);
+        break;
+    }
   };
 
   return (

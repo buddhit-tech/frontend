@@ -6,6 +6,7 @@ const Login = lazy(() => import("../pages/Auth/Login"));
 const DashboardHome = lazy(() => import("../pages/Dashboard/Home"));
 const NotFound = lazy(() => import("../pages/Utils/NotFound"));
 const Profile = lazy(() => import("../pages/Dashboard/Profile"));
+const Discover = lazy(() => import("../pages/Dashboard/Discover"));
 
 function AuthLayout() {
   return (
@@ -47,6 +48,14 @@ const router = createBrowserRouter([
         element: (
           <Suspense fallback={<div>Loading...</div>}>
             <Profile />
+          </Suspense>
+        ),
+      },
+      {
+        path: "discover",
+        element: (
+          <Suspense fallback={<div>Loading...</div>}>
+            <Discover />
           </Suspense>
         ),
       },

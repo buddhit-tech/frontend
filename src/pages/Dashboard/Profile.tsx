@@ -1,32 +1,31 @@
 import {
-  message,
-  Upload,
+  AtIcon,
+  BuildingOfficeIcon,
+  CameraIcon,
+  IdentificationCardIcon,
+  ShieldCheckIcon,
+  UserCircleIcon,
+  UserIcon,
+} from "@phosphor-icons/react";
+import {
+  Avatar,
   Card,
   Col,
   Divider,
   Form,
   Input,
+  message,
   Row,
-  Typography,
-  Button,
-  Space,
-  Avatar,
-  Tag,
   Statistic,
+  Typography,
+  Upload,
 } from "antd";
-import {
-  UserCircleIcon,
-  CameraIcon,
-  ShieldCheckIcon,
-  IdentificationCardIcon,
-  BuildingOfficeIcon,
-  AtIcon,
-  UserIcon,
-} from "@phosphor-icons/react";
+import { type FC, useContext, useState } from "react";
+
 import DashboardPageWrapper from "../../components/page/DashboardPageWrapper";
-import { useState, type FC, useContext } from "react";
+
 import type { GetProp, UploadProps } from "antd";
-import { LoadingOutlined, EditOutlined, SaveOutlined } from "@ant-design/icons";
+import { LoadingOutlined } from "@ant-design/icons";
 import clsx from "clsx";
 import LayoutContext from "../../contexts/Layout/context";
 
