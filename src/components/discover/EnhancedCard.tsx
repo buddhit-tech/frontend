@@ -1,6 +1,7 @@
 import type { FC } from "react";
 import { Card, Typography, Tag, theme, Row, Col, Divider } from "antd";
 import { ClockCircleOutlined, HeartOutlined } from "@ant-design/icons";
+import { useNavigate } from "react-router-dom";
 import clsx from "clsx";
 import type { EnhancedCardProps } from "./types";
 
@@ -13,10 +14,15 @@ const EnhancedCard: FC<EnhancedCardProps> = ({
   className,
 }) => {
   const { token } = theme.useToken();
+  const navigate = useNavigate();
+
+  const handleCardClick = () => {
+    navigate(`/discover/${content.id}`);
+  };
 
   const containerClasses = clsx(
     "transition-all duration-300 hover:shadow-lg hover:-translate-y-1",
-    "border-0 overflow-hidden rounded-lg",
+    "border-0 overflow-hidden rounded-lg cursor-pointer",
     className
   );
 
@@ -46,6 +52,7 @@ const EnhancedCard: FC<EnhancedCardProps> = ({
           }`,
         }}
         bodyStyle={{ padding: 0 }}
+        onClick={handleCardClick}
       >
         <Row className="min-h-[250px]">
           <Col xs={24} sm={8} className="p-0">
@@ -174,6 +181,7 @@ const EnhancedCard: FC<EnhancedCardProps> = ({
         }`,
       }}
       bodyStyle={{ padding: 0 }}
+      onClick={handleCardClick}
     >
       <div className="overflow-hidden">
         <img

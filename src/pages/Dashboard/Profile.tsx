@@ -69,13 +69,13 @@ const AvatarUploader: FC = () => {
   };
 
   return (
-    <div className="flex flex-col items-center">
-      <div className="relative group">
+    <div className="flex flex-col items-center theme-transition">
+      <div className="relative group theme-transition">
         <Avatar
           size={120}
           src={imageUrl}
           className={clsx(
-            "border-4 shadow-lg transition-all duration-300",
+            "border-4 shadow-lg transition-all duration-300 theme-transition",
             "group-hover:shadow-xl group-hover:shadow-blue-500/20",
             isDark ? "border-gray-600" : "border-gray-200"
           )}
@@ -154,30 +154,8 @@ const AvatarUploader: FC = () => {
 
 const Profile = () => {
   const [form] = Form.useForm();
-  const [isEditing, setIsEditing] = useState(false);
   const layoutContext = useContext(LayoutContext);
   const isDark = layoutContext?.isDark ?? false;
-
-  const handleEdit = () => {
-    setIsEditing(true);
-    message.info("Edit mode enabled");
-  };
-
-  const handleSave = async () => {
-    try {
-      await form.validateFields();
-      setIsEditing(false);
-      message.success("Profile updated successfully!");
-    } catch (error) {
-      message.error("Please fill in all required fields");
-    }
-  };
-
-  const handleCancel = () => {
-    setIsEditing(false);
-    form.resetFields();
-    message.info("Changes cancelled");
-  };
 
   return (
     <DashboardPageWrapper
@@ -185,33 +163,36 @@ const Profile = () => {
       title="Profile"
       subtitle="Manage your personal information and account settings"
     >
-      <div className="space-y-6">
+      <div className="space-y-6 theme-transition">
         {/* Profile Information Card */}
         <Card
           className={clsx(
-            "w-full shadow-lg transition-all duration-300",
+            "w-full shadow-lg transition-all duration-300 theme-transition",
             isDark
               ? "bg-gray-800/50 border-gray-700"
               : "bg-white border-gray-200"
           )}
         >
-          <div className="flex items-center gap-3 mb-6">
+          <div className="flex items-center gap-3 mb-6 theme-transition">
             <div
               className={clsx(
-                "p-2 rounded-lg",
+                "p-2 rounded-lg theme-transition",
                 isDark ? "bg-blue-600/20" : "bg-blue-100"
               )}
             >
               <UserCircleIcon
                 size={24}
-                className={clsx(isDark ? "text-blue-400" : "text-blue-600")}
+                className={clsx(
+                  "theme-transition",
+                  isDark ? "text-blue-400" : "text-blue-600"
+                )}
                 weight="fill"
               />
             </div>
             <Typography.Title
               level={3}
               className={clsx(
-                "mb-0 font-semibold",
+                "mb-0 font-semibold theme-transition",
                 isDark ? "text-white" : "text-gray-900"
               )}
             >

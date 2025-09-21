@@ -15,13 +15,14 @@ const Sidebar: FC = () => {
     <SidebarContainer
       $collapsed={collapsed}
       $borderColor={token.colorBorder}
+      className="theme-transition"
       style={{
         backgroundColor: isDark ? "#19181a" : "#f9f9f9",
       }}
     >
       <SidebarHeader
         $borderColor={isDark ? "#19181a" : "#D2D5D9"}
-        className="sidebar-header"
+        className="sidebar-header theme-transition"
         style={{
           backgroundColor: isDark ? "#19181a" : "#f9f9f9",
         }}
@@ -29,7 +30,7 @@ const Sidebar: FC = () => {
         <BrandLogo />
       </SidebarHeader>
 
-      <SidebarContent>
+      <SidebarContent className="theme-transition">
         <SidebarMenu collapsed={collapsed} />
       </SidebarContent>
 

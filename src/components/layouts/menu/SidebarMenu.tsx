@@ -21,56 +21,64 @@ const injectMenuStyles = () => {
   style.textContent = `
     .custom-menu-light.ant-menu-light {
       background-color: #f9f9f9 !important;
-      transition: background-color 0.3s ease !important;
+      transition: background-color 0.3s ease-in, color 0.3s ease-in, border-color 0.3s ease-in !important;
     }
     .custom-menu-light.ant-menu-light .ant-menu-item {
       background-color: #f9f9f9 !important;
-      transition: background-color 0.3s ease, color 0.3s ease !important;
+      transition: background-color 0.3s ease-in, color 0.3s ease-in, border-color 0.3s ease-in !important;
     }
     .custom-menu-light.ant-menu-light .ant-menu-submenu {
       background-color: #f9f9f9 !important;
-      transition: background-color 0.3s ease, color 0.3s ease !important;
+      transition: background-color 0.3s ease-in, color 0.3s ease-in, border-color 0.3s ease-in !important;
     }
     .custom-menu-light.ant-menu-light .ant-menu-sub {
       background-color: #f9f9f9 !important;
-      transition: background-color 0.3s ease !important;
+      transition: background-color 0.3s ease-in, color 0.3s ease-in !important;
     }
     .custom-menu-light.ant-menu-light .ant-menu-submenu-title {
       background-color: #f9f9f9 !important;
-      transition: background-color 0.3s ease, color 0.3s ease !important;
+      transition: background-color 0.3s ease-in, color 0.3s ease-in, border-color 0.3s ease-in !important;
+    }
+    .custom-menu-light.ant-menu-light .ant-menu-item-icon,
+    .custom-menu-light.ant-menu-light .ant-menu-submenu-icon {
+      transition: color 0.3s ease-in, fill 0.3s ease-in, stroke 0.3s ease-in !important;
     }
     
     .custom-menu-dark.ant-menu-dark {
       background-color: #19181a !important;
-      transition: background-color 0.3s ease !important;
+      transition: background-color 0.3s ease-in, color 0.3s ease-in, border-color 0.3s ease-in !important;
     }
     .custom-menu-dark.ant-menu-dark .ant-menu-item {
       background-color: #19181a !important;
-      transition: background-color 0.3s ease, color 0.3s ease !important;
+      transition: background-color 0.3s ease-in, color 0.3s ease-in, border-color 0.3s ease-in !important;
     }
     .custom-menu-dark.ant-menu-dark .ant-menu-submenu {
       background-color: #19181a !important;
-      transition: background-color 0.3s ease, color 0.3s ease !important;
+      transition: background-color 0.3s ease-in, color 0.3s ease-in, border-color 0.3s ease-in !important;
     }
     .custom-menu-dark.ant-menu-dark .ant-menu-sub {
       background-color: #19181a !important;
-      transition: background-color 0.3s ease !important;
+      transition: background-color 0.3s ease-in, color 0.3s ease-in !important;
     }
     .custom-menu-dark.ant-menu-dark .ant-menu-submenu-title {
       background-color: #19181a !important;
-      transition: background-color 0.3s ease, color 0.3s ease !important;
+      transition: background-color 0.3s ease-in, color 0.3s ease-in, border-color 0.3s ease-in !important;
     }
     .custom-menu-dark.ant-menu-dark .ant-menu-item-selected {
       background-color: #19181a !important;
-      transition: background-color 0.3s ease, color 0.3s ease !important;
+      transition: background-color 0.3s ease-in, color 0.3s ease-in, border-color 0.3s ease-in !important;
     }
     .custom-menu-dark.ant-menu-dark .ant-menu-submenu-selected {
       background-color: #19181a !important;
-      transition: background-color 0.3s ease, color 0.3s ease !important;
+      transition: background-color 0.3s ease-in, color 0.3s ease-in, border-color 0.3s ease-in !important;
     }
     .custom-menu-dark.ant-menu-dark .ant-menu-submenu-open {
       background-color: #19181a !important;
-      transition: background-color 0.3s ease, color 0.3s ease !important;
+      transition: background-color 0.3s ease-in, color 0.3s ease-in, border-color 0.3s ease-in !important;
+    }
+    .custom-menu-dark.ant-menu-dark .ant-menu-item-icon,
+    .custom-menu-dark.ant-menu-dark .ant-menu-submenu-icon {
+      transition: color 0.3s ease-in, fill 0.3s ease-in, stroke 0.3s ease-in !important;
     }
   `;
   document.head.appendChild(style);
@@ -155,7 +163,7 @@ const SidebarMenu: FC<SidebarMenuProps> = ({ collapsed }) => {
       defaultSelectedKeys={["1"]}
       className={clsx(
         "flex-1 border-0 [&_.ant-menu]:border-0 [&_.ant-menu-inline]:border-0",
-        "transition-all duration-200 ease-in-out",
+        "transition-all duration-300 ease-in",
         collapsed ? "w-[80px]" : "w-[256px]",
         darkMode === "dark" ? "custom-menu-dark" : "custom-menu-light"
       )}

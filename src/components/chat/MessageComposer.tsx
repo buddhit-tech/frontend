@@ -9,10 +9,12 @@ import AttachmentButton from "./AttachmentButton";
 
 type MessageComposerProps = {
   placeholder?: string;
+  variant?: "default" | "fixed";
 };
 
 const MessageComposer: FC<MessageComposerProps> = ({
   placeholder = "Ask anything",
+  variant = "default",
 }) => {
   const { token } = theme.useToken();
   const [message, setMessage] = useState("");
@@ -78,7 +80,12 @@ const MessageComposer: FC<MessageComposerProps> = ({
   };
 
   return (
-    <div className="w-full max-w-4xl mx-auto px-4 py-6 min-w-0">
+    <div
+      className={clsx(
+        "w-full min-w-0",
+        variant === "fixed" ? "px-0 py-0" : "max-w-4xl mx-auto px-4 py-6"
+      )}
+    >
       <div
         className={clsx(
           "relative rounded-2xl border transition-all duration-200 group",

@@ -1,6 +1,5 @@
 import { Fragment, type FC } from "react";
-import { Row, Col, Typography, theme, Space, Tabs, Divider } from "antd";
-import { DownOutlined } from "@ant-design/icons";
+import { Row, Col, Typography, theme, Divider } from "antd";
 import clsx from "clsx";
 import useLayout from "../../hooks/useLayout";
 import ComponentRenderer from "./ComponentRenderer";
@@ -28,18 +27,18 @@ const EnhancedDynamicLayout: FC<EnhancedDynamicLayoutProps> = ({
     console.log("Interests widget closed");
   };
 
-  // Prepare tab items from API response
-  const tabItems = apiResponse.layout.tabs.map((tab) => ({
-    key: tab.key,
-    label: tab.hasDropdown ? (
-      <Space>
-        {tab.label}
-        <DownOutlined style={{ fontSize: "12px" }} />
-      </Space>
-    ) : (
-      tab.label
-    ),
-  }));
+  // // Prepare tab items from API response
+  // const tabItems = apiResponse.layout.tabs.map((tab) => ({
+  //   key: tab.key,
+  //   label: tab.hasDropdown ? (
+  //     <Space>
+  //       {tab.label}
+  //       <DownOutlined style={{ fontSize: "12px" }} />
+  //     </Space>
+  //   ) : (
+  //     tab.label
+  //   ),
+  // }));
 
   // Split articles based on grid configuration
   const grid1Articles = apiResponse.articles.slice(
@@ -54,19 +53,19 @@ const EnhancedDynamicLayout: FC<EnhancedDynamicLayoutProps> = ({
 
   return (
     <div
-      className="min-h-screen p-4 md:p-6"
+      className="min-h-screen p-4 md:p-6 theme-transition"
       style={{
         backgroundColor: isDark ? "#212121" : "#fff",
         color: isDark ? token.colorText : "#1f2937",
       }}
     >
       {/* Header */}
-      <div className="mb-8">
-        <div className="flex items-center justify-between mb-6">
+      <div className="">
+        <div className="flex items-center justify-between theme-transition">
           <Title
             level={1}
             className={clsx(
-              "mb-0 font-bold",
+              "mb-0 font-bold theme-transition",
               isDark
                 ? "bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent"
                 : "bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent"
@@ -76,24 +75,24 @@ const EnhancedDynamicLayout: FC<EnhancedDynamicLayoutProps> = ({
           </Title>
         </div>
 
-        <Tabs
+        {/* <Tabs
           items={tabItems}
           defaultActiveKey="for-you"
           className={clsx(
-            "border-b-0",
+            "border-b-0 theme-transition",
             isDark ? "ant-tabs-dark" : "ant-tabs-light"
           )}
           style={{
             color: isDark ? token.colorText : "#1f2937",
           }}
-        />
+        /> */}
       </div>
 
       {/* Main Content */}
-      <Row gutter={[32, 32]}>
+      <Row gutter={[32, 32]} className="theme-transition">
         {/* Left Content - Articles */}
-        <Col xs={24} lg={16} xl={18}>
-          <div className="space-y-8">
+        <Col xs={24} lg={16} xl={18} className="theme-transition">
+          <div className="space-y-8 theme-transition">
             {/* Sections */}
             {apiResponse.sections.length > 0 && (
               <div className="space-y-8 mb-8">

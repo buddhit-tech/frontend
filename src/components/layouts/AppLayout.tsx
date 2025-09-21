@@ -26,14 +26,14 @@ const AppLayout: FC<PropsWithChildren> = ({ children }) => {
   return (
     <main
       className={clsx(
-        "h-[100vh] w-full max-w-full overflow-x-hidden flex",
+        "h-[100vh] w-full max-w-full overflow-x-hidden flex theme-transition",
         darkMode === "dark" ? "bg-[#212121]" : "bg-[#f9f9f9]"
       )}
     >
       {isLoggedIn && <Sidebar />}
-      <div className="flex-1 flex items-stretch relative min-w-0">
+      <div className="flex-1 flex items-stretch relative min-w-0 theme-transition">
         {isClassRoomSidebarOpen && <ClassRoomSidebar />}
-        <div className="flex-1 min-w-0 h-full overflow-y-auto overflow-x-hidden">
+        <div className="flex-1 min-w-0 h-full overflow-y-auto overflow-x-hidden theme-transition">
           {children}
         </div>
       </div>

@@ -20,7 +20,8 @@
 /* Global theme transition styles for smooth switching */
 * {
   transition: background-color 0.3s ease, color 0.3s ease,
-    border-color 0.3s ease, box-shadow 0.3s ease !important;
+    border-color 0.3s ease, box-shadow 0.3s ease, fill 0.3s ease,
+    stroke 0.3s ease, opacity 0.3s ease, transform 0.3s ease, filter 0.3s ease !important;
 }
 
 /* Specific transitions for common elements */
@@ -49,9 +50,23 @@ html {
 .ant-tooltip,
 .ant-popover,
 .ant-message,
-.ant-notification {
+.ant-notification,
+.ant-typography,
+.ant-statistic,
+.ant-form,
+.ant-form-item,
+.ant-upload,
+.ant-upload-list,
+.ant-avatar,
+.ant-button,
+.ant-divider,
+.ant-tabs,
+.ant-tabs-content,
+.ant-tabs-tab,
+.ant-tabs-tabpane {
   transition: background-color 0.3s ease, color 0.3s ease,
-    border-color 0.3s ease, box-shadow 0.3s ease !important;
+    border-color 0.3s ease, box-shadow 0.3s ease, fill 0.3s ease,
+    stroke 0.3s ease, opacity 0.3s ease !important;
 }
 
 /* Enhanced transitions for sidebar and menu components */
@@ -70,9 +85,13 @@ html {
 .ant-menu-submenu-popup,
 .ant-menu-vertical,
 .ant-menu-horizontal,
-.ant-menu-inline {
+.ant-menu-inline,
+.ant-menu-item-group,
+.ant-menu-item-group-title,
+.ant-menu-item-group-list {
   transition: background-color 0.3s ease, color 0.3s ease,
-    border-color 0.3s ease, box-shadow 0.3s ease !important;
+    border-color 0.3s ease, box-shadow 0.3s ease, fill 0.3s ease,
+    stroke 0.3s ease, opacity 0.3s ease !important;
 }
 
 /* Specific menu item transitions */
@@ -144,8 +163,20 @@ button {
 }
 
 /* Ensure smooth transitions for all styled-components */
-[class*="styled-components"] {
-  transition: all 0.3s ease !important;
+[class*="styled-components"],
+div[class*="styled-"],
+span[class*="styled-"],
+button[class*="styled-"],
+section[class*="styled-"],
+article[class*="styled-"],
+aside[class*="styled-"],
+header[class*="styled-"],
+footer[class*="styled-"],
+nav[class*="styled-"],
+main[class*="styled-"] {
+  transition: background-color 0.3s ease, color 0.3s ease,
+    border-color 0.3s ease, box-shadow 0.3s ease, fill 0.3s ease,
+    stroke 0.3s ease, opacity 0.3s ease, transform 0.3s ease, filter 0.3s ease !important;
 }
 
 /* Theme transition class for root element */
@@ -154,6 +185,35 @@ button {
 }
 
 .theme-transition * {
+  transition: background-color 0.3s ease, color 0.3s ease,
+    border-color 0.3s ease, box-shadow 0.3s ease, fill 0.3s ease,
+    stroke 0.3s ease, opacity 0.3s ease, transform 0.3s ease, filter 0.3s ease !important;
+}
+
+/* Specific transitions for icon components */
+[class*="icon"],
+[class*="Icon"],
+svg,
+path,
+circle,
+rect,
+line,
+polygon,
+g {
+  transition: fill 0.3s ease, stroke 0.3s ease, color 0.3s ease !important;
+}
+
+/* Phosphor icons transitions */
+[class*="phosphor"] {
+  transition: color 0.3s ease, fill 0.3s ease, stroke 0.3s ease !important;
+}
+
+/* Enhanced transitions for layout components */
+.flex,
+.grid,
+.container,
+.wrapper,
+.layout {
   transition: background-color 0.3s ease, color 0.3s ease,
     border-color 0.3s ease, box-shadow 0.3s ease !important;
 }

@@ -19,9 +19,11 @@ const queryClient = new QueryClient({
   },
 });
 
-// Add theme transition class to root element for smooth theme switching
+// Add theme transition class to root element and body for smooth theme switching
 const rootElement = document.getElementById("root")!;
 rootElement.classList.add("theme-transition");
+document.body.classList.add("theme-transition");
+document.documentElement.classList.add("theme-transition");
 
 createRoot(rootElement).render(
   <StrictMode>
